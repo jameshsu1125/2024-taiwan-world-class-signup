@@ -15,6 +15,7 @@
     "@faker-js/faker": "^8.3.1",
     "lesca-click": "^4.3.5",
     "lesca-fetcher": "^1.1.7",
+    "lesca-react-capture-button": "^2.0.4",
     "lesca-react-onload": "^1.0.15",
     "lesca-use-tween": "^3.0.6",
     "react": "^18.2.0",

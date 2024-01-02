@@ -16,14 +16,15 @@ export default {
     },
     colors: {
       ...color,
-      primary: '#870000',
-      secondary: '#ff6600',
-      tertiary: '#ff0066',
-      quaternary: '#00ff00',
+      primary: '#108CFF',
+      secondary: '#A3A3A3',
       backgroundColor: '#fff',
       textColor: '#111',
     },
+    fontFamily: {
+      noto: ['Noto Sans TC', 'sans-serif'],
+    },
     extend: {},
   },
-  plugins: [],
+  plugins: ['prettier-plugin-tailwindcss'],
 };

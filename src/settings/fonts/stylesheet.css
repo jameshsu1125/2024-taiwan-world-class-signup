@@ -1,0 +1,9 @@
+@font-face {
+  font-style: normal;
+  font-family: 'Noto Sans TC';
+  src:
+    url('subset-NotoSansTC-Thin.woff2') format('woff2'),
+    url('subset-NotoSansTC-Thin.woff') format('woff');
+
+  font-display: swap;
+}
