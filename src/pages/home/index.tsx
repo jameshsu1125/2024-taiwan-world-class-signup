@@ -193,7 +193,7 @@ const Home = memo(() => {
                     >
                       <button
                         type='button'
-                        className='px-5 py-2 mr-3 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-200'
+                        className='px-5 py-1 mr-3 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-200'
                       >
                         選擇檔案
                       </button>
