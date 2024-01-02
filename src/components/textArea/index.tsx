@@ -1,13 +1,20 @@
 import { memo, useEffect } from 'react';
 
 type T = {
+  name?: string;
   placeholder: string;
 };
 
-const Textarea = memo(({ placeholder }: T) => {
+const Textarea = memo(({ name, placeholder }: T) => {
   useEffect(() => {}, []);
   return (
-    <textarea className='w-full border p-3' placeholder={placeholder} maxLength={300} rows={5} />
+    <textarea
+      name={name || `textArea-${placeholder}`}
+      className='w-full border p-3'
+      placeholder={placeholder}
+      maxLength={300}
+      rows={5}
+    />
   );
 });
 export default Textarea;

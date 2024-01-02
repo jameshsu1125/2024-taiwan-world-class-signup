@@ -1,6 +1,6 @@
-import { memo, useState } from 'react';
+import { FormEvent, memo, useState } from 'react';
 import { HomeContext, HomeState, THomeState } from './config';
-import CaptureProvider from 'lesca-react-capture-button';
+import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 import './index.less';
 import Container from '@/components/container';
 import Section from '@/components/section';
@@ -9,10 +9,18 @@ import Input from '@/components/input';
 import Select from '@/components/select';
 import Textarea from '@/components/textArea';
 import Button from '@/components/button';
-import { DOMString } from 'lesca-react-capture-button/lib/type';
 
 const Home = memo(() => {
   const [state, setState] = useState<THomeState>(HomeState);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    const a = Object.fromEntries([...formData]);
+    console.log(a);
+  };
 
   return (
     <div className='Home'>
@@ -30,10 +38,10 @@ const Home = memo(() => {
               </ol>
             </div>
           </Section>
-          <form>
+          <form onSubmit={onSubmit}>
             <Section>
               <Group title='代表店家'>
-                <Input placeholder='請輸入店名' />
+                <Input name='store' placeholder='請輸入店名' />
               </Group>
             </Section>
             <Section>
@@ -173,20 +181,26 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='上傳調酒照片'>
-                <CaptureProvider
-                  compress={0.8}
-                  onCapture={({ image }: { image: string }) => {
-                    console.log(image);
-                  }}
-                  type={DOMString.jpg}
-                  maxWidth={1024}
-                >
-                  <div className='w-full cursor-pointer'>
-                    <div className='pointer-events-none'>
-                      <Input type='file' placeholder='檔案格式：jpg，限10mb內' />
-                    </div>
+                <div className='w-full h-full select-none'>
+                  <div className='w-full h-full bg-white flex flex-row justify-start items-center text-secondary'>
+                    <CaptureProvider
+                      compress={0.8}
+                      onCapture={({ image }: { image: string }) => {
+                        console.log(image);
+                      }}
+                      type={DOMString.jpg}
+                      maxWidth={1024}
+                    >
+                      <button
+                        type='button'
+                        className='px-5 py-2 mr-3 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-200'
+                      >
+                        選擇檔案
+                      </button>
+                    </CaptureProvider>
+                    檔案格式：jpg，限10mb內
                   </div>
-                </CaptureProvider>
+                </div>
               </Group>
             </Section>
             <Section>
