@@ -15,9 +15,7 @@ const Home = memo(() => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.target as HTMLFormElement);
-
     const a = Object.fromEntries([...formData]);
     console.log(a);
   };
@@ -36,6 +34,7 @@ const Home = memo(() => {
                 <li>酒譜寄出後，頁面彈出『繳交成功』視窗者，即完成酒譜繳交作業</li>
                 <li>逾時繳交者，將不再保有參賽資格，亦不另做通知</li>
               </ol>
+              <span className='text-red-500'>*表示必填欄位</span>
             </div>
           </Section>
           <form onSubmit={onSubmit}>
@@ -53,12 +52,12 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='手機'>
-                <Input placeholder='請輸入手機號碼' />
+                <Input type='tel' placeholder='請輸入手機號碼' />
               </Group>
             </Section>
             <Section>
               <Group title='Email' sub={['若繳交成功，10分鐘內將收到填寫副本，請填寫正確郵件地址']}>
-                <Input placeholder='請輸入電子信箱' />
+                <Input type='email' placeholder='請輸入電子信箱' />
               </Group>
             </Section>
             <Section>
@@ -85,8 +84,7 @@ const Home = memo(() => {
                   '貼文需設定公開（分享對象為「所有人」），以主辦單位可核查為準未依指定格式發文者，視為棄權',
                 ]}
               >
-                <Input placeholder='請輸入中文調酒名稱' />
-                <Input placeholder='請輸入英文調酒名稱' />
+                <Input placeholder='請輸入網址' />
               </Group>
             </Section>
             <Section>
@@ -102,8 +100,7 @@ const Home = memo(() => {
                   </>,
                 ]}
               >
-                <Input placeholder='請輸入中文調酒名稱' />
-                <Input placeholder='請輸入英文調酒名稱' />
+                <Input placeholder='請輸入文字' />
               </Group>
             </Section>
             <Section>
@@ -114,49 +111,49 @@ const Home = memo(() => {
               </Group>
             </Section>
             <Section>
-              <Group title='材料1 / 使用量(ml)'>
+              <Group title='材料1 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='材料2 / 使用量(ml)'>
+              <Group title='材料2 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='材料3 / 使用量(ml)'>
+              <Group title='材料3 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='材料4 / 使用量(ml)'>
+              <Group title='材料4 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='材料5 / 使用量(ml)'>
+              <Group title='材料5 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='材料6 / 使用量(ml)'>
+              <Group title='材料6 / 使用量(ml)' required={false}>
                 <Input placeholder='請輸入材料中文名稱' />
                 <Input placeholder='請輸入材料英文名稱' />
                 <Input placeholder='請輸入使用量(ml)' full={false} />
               </Group>
             </Section>
             <Section>
-              <Group title='Garnish'>
+              <Group title='Garnish' required={false}>
                 <Input placeholder='請輸入中文名稱' />
                 <Input placeholder='請輸入英文名稱' />
               </Group>

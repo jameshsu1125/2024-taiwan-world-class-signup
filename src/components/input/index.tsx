@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, memo, useEffect } from 'react';
+import { InputHTMLAttributes, memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type T = {
@@ -8,15 +8,12 @@ type T = {
   full?: boolean;
 };
 
-const Input = memo(({ name, type = 'text', placeholder, full = true }: T) => {
-  useEffect(() => {}, []);
-  return (
-    <input
-      name={name || `input-${placeholder}`}
-      type={type}
-      className={twMerge('border p-3', full ? 'w-full' : 'w-1/2')}
-      placeholder={placeholder}
-    />
-  );
-});
+const Input = memo(({ name, type = 'text', placeholder, full = true }: T) => (
+  <input
+    name={name || `input-${placeholder}`}
+    type={type}
+    className={twMerge('border p-3', full ? 'w-full' : 'w-1/2')}
+    placeholder={placeholder}
+  />
+));
 export default Input;

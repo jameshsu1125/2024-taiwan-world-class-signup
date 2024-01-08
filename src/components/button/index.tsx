@@ -7,13 +7,11 @@ type TRegularProps = Debug<{
   onClick?: () => void;
 }>;
 
-const Button = ({ type, children, onClick }: IReactProps & TRegularProps) => {
-  return (
-    <button className='w-full' type={type} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+const Button = ({ type, children, onClick }: IReactProps & TRegularProps) => (
+  <button className='w-full' type={type} onClick={onClick}>
+    {children}
+  </button>
+);
 
 Button.regular = Regular;
 
