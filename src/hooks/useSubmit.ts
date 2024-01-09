@@ -4,9 +4,9 @@ import { REST_PATH } from '../settings/config';
 import { Context } from '../settings/constant';
 import { ActionType } from '@/settings/type';
 
-export type TResult = { userID: string; id: number; title: string; completed: boolean } | undefined;
+export type TResult = { res: boolean; id: number; msg: string } | undefined;
 
-const useTodos = () => {
+const useSubmit = () => {
   const [, setContext] = useContext(Context);
   const [state, setState] = useState<TResult>();
   const fetch = async () => {
@@ -17,4 +17,4 @@ const useTodos = () => {
   };
   return [state, fetch] as const;
 };
-export default useTodos;
+export default useSubmit;

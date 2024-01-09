@@ -1,0 +1,20 @@
+.Modal {
+  @apply fixed top-0 w-full h-full flex justify-center items-center z-50 p-10;
+
+  .bg {
+    background-color: rgba(0, 0, 0, 0.7);
+    @apply absolute w-full h-full top-0;
+  }
+
+  .dialog {
+    @apply bg-white p-8 rounded-lg relative flex justify-start flex-col items-center max-w-lg space-y-5;
+
+    h1 {
+      @apply font-noto font-bold text-xl tracking-wider;
+    }
+
+    p {
+      @apply font-noto font-normal text-sm;
+    }
+  }
+}

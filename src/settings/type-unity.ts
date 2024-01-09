@@ -22,3 +22,6 @@ export type ExpectValidArgs<
   ARGS extends any[],
 > = ARGS extends Parameters<FUNC> ? true : false;
 // type A = ExpectValidArgs<(a: string, b: number) => void, [string, number]> // Expect true
+
+export type NoUndefinedField<T> = { [P in keyof T]-?: NoUndefinedField<NonNullable<T[P]>> };
+// remove undefined from type

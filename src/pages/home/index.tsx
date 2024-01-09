@@ -1,4 +1,4 @@
-import { FormEvent, memo, useState } from 'react';
+import { FormEvent, memo, useContext, useEffect, useState } from 'react';
 import { HomeContext, HomeState, THomeState } from './config';
 import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 import './index.less';
@@ -9,16 +9,49 @@ import Input from '@/components/input';
 import Select from '@/components/select';
 import Textarea from '@/components/textArea';
 import Button from '@/components/button';
+import { Context } from '@/settings/constant';
+import { ActionType, ModalType } from '@/settings/type';
+import useSubmit from '@/hooks/useSubmit';
 
 const Home = memo(() => {
+  const [, setContext] = useContext(Context);
   const [state, setState] = useState<THomeState>(HomeState);
+  const [respond, setSubmit] = useSubmit();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const a = Object.fromEntries([...formData]);
     console.log(a);
+
+    setContext({
+      type: ActionType.Modal,
+      state: {
+        ...ModalType[0],
+        enabled: true,
+        onClose: () => {
+          setSubmit();
+        },
+      },
+    });
   };
+
+  useEffect(() => {
+    if (respond) {
+      if (respond.res) {
+        setContext({
+          type: ActionType.Modal,
+          state: {
+            ...ModalType[1],
+            enabled: true,
+            onClose: () => {
+              window.location.reload();
+            },
+          },
+        });
+      }
+    }
+  }, [respond]);
 
   return (
     <div className='Home'>
@@ -202,7 +235,7 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Button type='submit'>
-                <Button.regular>確認送出</Button.regular>
+                <Button.Regular>確認送出</Button.Regular>
               </Button>
             </Section>
           </form>

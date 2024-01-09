@@ -6,12 +6,12 @@ import { HttpResponse, http } from 'msw';
 export const handlers = [
   http.get(mergePath(REST_PATH.test), () => {
     return HttpResponse.json({
-      userId: faker.string.uuid(),
+      res: true,
       id: faker.number.int(10),
-      title: faker.lorem.lines(1),
-      completed: faker.datatype.boolean(),
+      msg: faker.lorem.lines(1),
     });
   }),
+
   http.get('/api', () => {
     return new HttpResponse(null, {
       status: 404,
