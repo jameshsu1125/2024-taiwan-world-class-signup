@@ -1,54 +1,11 @@
+import { SchemaRequiredGroupType, SchemaRequiredType } from './type';
+
 export const PAGE = {
   home: 'home',
 };
 
 export const REST_PATH = {
-  test: 'todos/1',
-};
-
-export type TSchema = {
-  storeName: string;
-  userName: string;
-  userEnglishName: string;
-  userNickName: string;
-  tel: string | number;
-  email: string;
-  diageoStaff: string;
-  bartendingLevel: string;
-  bartendingName: string;
-  bartendingEnglishName: string;
-  facebookURL: string;
-  alcoholConcentration: string | number;
-  baseWineName: string;
-  baseWineEnglishName: string;
-  baseWineDosage: string | number;
-  materialName1?: string;
-  materialEnglishName1?: string;
-  materialDosage1?: string;
-  materialName2?: string | number;
-  materialEnglishName2?: string;
-  materialDosage2?: string | number;
-  materialName3?: string | number;
-  materialEnglishName3?: string;
-  materialDosage3?: string | number;
-  materialName4?: string | number;
-  materialEnglishName4?: string;
-  materialDosage4?: string | number;
-  materialName5?: string | number;
-  materialEnglishName5?: string;
-  materialDosage5?: string | number;
-  materialName6?: string | number;
-  materialEnglishName6?: string;
-  materialDosage6?: string | number;
-  garnishName?: string;
-  garnishEnglishName?: string;
-  cupsName: string;
-  cupsEnglishName: string;
-  productionMethod: string;
-  productionMethodEnglish: string;
-  introduction: string;
-  introductionEnglish: string;
-  photo: string;
+  save: 'saveData',
 };
 
 export const SCHEMA_KEY = {
@@ -95,3 +52,125 @@ export const SCHEMA_KEY = {
   introductionEnglish: 'introductionEnglish',
   photo: 'photo',
 };
+
+export const SCHEMA_REQUIRED = [
+  {
+    name: SCHEMA_KEY.storeName,
+    required: SchemaRequiredType.Store,
+    group: SchemaRequiredGroupType.Store,
+  },
+  {
+    name: SCHEMA_KEY.userName,
+    required: SchemaRequiredType.User,
+    group: SchemaRequiredGroupType.User,
+  },
+  {
+    name: SCHEMA_KEY.userEnglishName,
+    required: SchemaRequiredType.User,
+    group: SchemaRequiredGroupType.User,
+  },
+  {
+    name: SCHEMA_KEY.userNickName,
+    required: SchemaRequiredType.User,
+    group: SchemaRequiredGroupType.User,
+  },
+  { name: SCHEMA_KEY.tel, required: SchemaRequiredType.Tel, group: SchemaRequiredGroupType.Tel },
+  {
+    name: SCHEMA_KEY.email,
+    required: SchemaRequiredType.Email,
+    group: SchemaRequiredGroupType.Email,
+  },
+  {
+    name: SCHEMA_KEY.diageoStaff,
+    required: SchemaRequiredType.DiageoStaff,
+    group: SchemaRequiredGroupType.DiageoStaff,
+  },
+  {
+    name: SCHEMA_KEY.bartendingLevel,
+    required: SchemaRequiredType.BartendingLevel,
+    group: SchemaRequiredGroupType.BartendingLevel,
+  },
+  {
+    name: SCHEMA_KEY.bartendingName,
+    required: SchemaRequiredType.Bartending,
+    group: SchemaRequiredGroupType.Bartending,
+  },
+  {
+    name: SCHEMA_KEY.bartendingEnglishName,
+    required: SchemaRequiredType.Bartending,
+    group: SchemaRequiredGroupType.Bartending,
+  },
+  {
+    name: SCHEMA_KEY.facebookURL,
+    required: SchemaRequiredType.FacebookURL,
+    group: SchemaRequiredGroupType.FacebookURL,
+  },
+  {
+    name: SCHEMA_KEY.alcoholConcentration,
+    required: SchemaRequiredType.AlcoholConcentration,
+    group: SchemaRequiredGroupType.AlcoholConcentration,
+  },
+  {
+    name: SCHEMA_KEY.baseWineName,
+    required: SchemaRequiredType.BaseWine,
+    group: SchemaRequiredGroupType.BaseWine,
+  },
+  {
+    name: SCHEMA_KEY.baseWineEnglishName,
+    required: SchemaRequiredType.BaseWine,
+    group: SchemaRequiredGroupType.BaseWine,
+  },
+  {
+    name: SCHEMA_KEY.baseWineDosage,
+    required: SchemaRequiredType.BaseWine,
+    group: SchemaRequiredGroupType.BaseWine,
+  },
+  {
+    name: SCHEMA_KEY.cupsName,
+    required: SchemaRequiredType.Cups,
+    group: SchemaRequiredGroupType.Cups,
+  },
+  {
+    name: SCHEMA_KEY.cupsEnglishName,
+    required: SchemaRequiredType.Cups,
+    group: SchemaRequiredGroupType.Cups,
+  },
+  {
+    name: SCHEMA_KEY.productionMethod,
+    required: SchemaRequiredType.Production,
+    group: SchemaRequiredGroupType.Production,
+  },
+  {
+    name: SCHEMA_KEY.productionMethodEnglish,
+    required: SchemaRequiredType.Production,
+    group: SchemaRequiredGroupType.Production,
+  },
+  {
+    name: SCHEMA_KEY.introduction,
+    required: SchemaRequiredType.Introduction,
+    group: SchemaRequiredGroupType.Introduction,
+  },
+  {
+    name: SCHEMA_KEY.introductionEnglish,
+    required: SchemaRequiredType.Introduction,
+    group: SchemaRequiredGroupType.Introduction,
+  },
+  {
+    name: SCHEMA_KEY.photo,
+    required: SchemaRequiredType.Photo,
+    group: SchemaRequiredGroupType.Photo,
+  },
+];
+
+export const DIAGEO_STAFF_LIST = [
+  { label: 'Chris Lin', value: 'Chris Lin' },
+  { label: 'Max Lee', value: 'Max Lee' },
+  { label: 'Vic Lin', value: 'Vic Lin' },
+  { label: 'Al Hou', value: 'Al Hou' },
+  { label: 'None', value: 'None' },
+];
+
+export const BARTENDING_LEVEL_LIST = [
+  { label: 'Don Julio: Classic of Future', value: 'Don Julio: Classic of Future' },
+  { label: 'Johnnie Walker Black: One Step Beyon', value: 'Johnnie Walker Black: One Step Beyon' },
+];

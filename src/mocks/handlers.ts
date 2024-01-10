@@ -4,11 +4,10 @@ import { mergePath } from 'lesca-fetcher';
 import { HttpResponse, http } from 'msw';
 
 export const handlers = [
-  http.get(mergePath(REST_PATH.test), () => {
+  http.post(mergePath(REST_PATH.save), () => {
     return HttpResponse.json({
-      res: true,
-      id: faker.number.int(10),
-      msg: faker.lorem.lines(1),
+      status_code: 1,
+      message: faker.lorem.lines(1),
     });
   }),
 

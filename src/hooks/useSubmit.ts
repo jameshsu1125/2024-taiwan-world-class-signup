@@ -1,17 +1,17 @@
+import { ActionType, TResponse, TSchema } from '@/settings/type';
 import Fetcher from 'lesca-fetcher';
 import { useContext, useState } from 'react';
 import { REST_PATH } from '../settings/config';
 import { Context } from '../settings/constant';
-import { ActionType } from '@/settings/type';
-
-export type TResult = { res: boolean; id: number; msg: string } | undefined;
 
 const useSubmit = () => {
   const [, setContext] = useContext(Context);
-  const [state, setState] = useState<TResult>();
-  const fetch = async () => {
+  const [state, setState] = useState<TResponse | undefined>();
+
+  const fetch = async ({ data }: { data: TSchema }) => {
+    console.log(data);
     setContext({ type: ActionType.LoadingProcess, state: { enabled: true } });
-    const respond = (await Fetcher.get(REST_PATH.test)) as TResult;
+    const respond = (await Fetcher.post(REST_PATH.save, data)) as TResponse;
     setState(respond);
     setContext({ type: ActionType.LoadingProcess, state: { enabled: false } });
   };
