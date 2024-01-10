@@ -7,7 +7,7 @@
 [![ROUTER](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=npm&logoColor=white)](https://lesscss.org/)
 
 <p align="center">
-  <a href="https://diageo-worldclass.com.tw/">
+  <a target='_blank' href="https://diageo-worldclass.com.tw/">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Diageo_Logo.svg/2560px-Diageo_Logo.svg.png" alt="Logo" width=300 height=72>
   </a>
   <h3 align="center">Diageo 2024 Taiwan World Class</h3>
