@@ -1,7 +1,7 @@
 import { IReactProps } from '@/settings/type';
 import { Debug } from '@/settings/type-unity';
-import Regular from './regular';
 import Modal from './modal';
+import Regular from './regular';
 
 type TRegularProps = Debug<{
   type?: 'submit' | 'button';

@@ -1,6 +1,6 @@
 import { SCHEMA_REQUIRED } from '@/settings/config';
 import { SchemaRequiredType, TSchema } from '@/settings/type';
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, createContext } from 'react';
 
 export const HomeData: TSchema = {
   storeName: '',

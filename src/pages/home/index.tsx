@@ -1,16 +1,10 @@
-import { FormEvent, memo, useContext, useEffect, useState } from 'react';
-import { HomeContext, HomeState, THomeGroups, THomeState } from './config';
-import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
-import './index.less';
+import Button from '@/components/button';
 import Container from '@/components/container';
-import Section from '@/components/section';
 import Group from '@/components/group';
 import Input from '@/components/input';
+import Section from '@/components/section';
 import Select from '@/components/select';
 import Textarea from '@/components/textArea';
-import Button from '@/components/button';
-import { Context } from '@/settings/constant';
-import { ActionType, ModalType, SchemaRequiredGroupType, TSchema } from '@/settings/type';
 import useSubmit from '@/hooks/useSubmit';
 import {
   BARTENDING_LEVEL_LIST,
@@ -18,7 +12,13 @@ import {
   SCHEMA_KEY,
   SCHEMA_REQUIRED,
 } from '@/settings/config';
+import { Context } from '@/settings/constant';
+import { ActionType, ModalType, SchemaRequiredGroupType, TSchema } from '@/settings/type';
+import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
+import { FormEvent, memo, useContext, useEffect, useState } from 'react';
+import { HomeContext, HomeState, THomeGroups, THomeState } from './config';
+import './index.less';
 
 const Home = memo(() => {
   const [, setContext] = useContext(Context);
