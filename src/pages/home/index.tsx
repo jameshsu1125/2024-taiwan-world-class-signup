@@ -127,9 +127,7 @@ const Home = memo(() => {
           state: {
             ...message,
             enabled: true,
-            onClose: () => {
-              window.location.reload();
-            },
+            onClose: () => {},
           },
         });
       }
