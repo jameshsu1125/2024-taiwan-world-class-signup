@@ -119,6 +119,19 @@ const Home = memo(() => {
             },
           },
         });
+      } else {
+        const message = ModalType[3];
+        message.body = respond.message;
+        setContext({
+          type: ActionType.Modal,
+          state: {
+            ...message,
+            enabled: true,
+            onClose: () => {
+              window.location.reload();
+            },
+          },
+        });
       }
     }
   }, [respond]);

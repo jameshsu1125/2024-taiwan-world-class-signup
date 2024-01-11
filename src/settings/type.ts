@@ -52,6 +52,12 @@ export const ModalType: { title: string; confirm: string; cancel: string; body: 
     cancel: '',
     body: '',
   },
+  {
+    title: '系統訊息',
+    confirm: 'OK',
+    cancel: '',
+    body: '',
+  },
 ];
 
 export type TModalState = {
