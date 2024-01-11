@@ -16,7 +16,7 @@ const Group = memo(({ children, title, sub, error = false, required = true }: T)
         {title}
         <sup className='text-red-500'>{required ? '*' : null}</sup>
       </div>
-      {error ? <div className='text-sm text-red-500'>*此為必填欄位</div> : null}
+      {error && required ? <div className='text-sm text-red-500'>*此為必填欄位</div> : null}
     </div>
     {sub ? (
       <div className='py-2'>

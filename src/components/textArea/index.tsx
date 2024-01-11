@@ -10,7 +10,7 @@ const Textarea = memo(({ name, placeholder }: T) => (
     name={name || `textArea-${placeholder}`}
     className='w-full border p-3'
     placeholder={placeholder}
-    maxLength={300}
+    maxLength={400}
     rows={5}
   />
 ));

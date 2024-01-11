@@ -13,7 +13,13 @@ import {
   SCHEMA_REQUIRED,
 } from '@/settings/config';
 import { Context } from '@/settings/constant';
-import { ActionType, ModalType, SchemaRequiredGroupType, TSchema } from '@/settings/type';
+import {
+  ActionType,
+  ModalType,
+  SchemaRequiredGroupType,
+  TSchema,
+  TValidate,
+} from '@/settings/type';
 import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
 import { FormEvent, memo, useContext, useEffect, useState } from 'react';
@@ -25,28 +31,41 @@ const Home = memo(() => {
   const [state, setState] = useState<THomeState>(HomeState);
   const [respond, setSubmit] = useSubmit();
   const [photo, setPhoto] = useState<string>('');
+  const [level, setLevel] = useState<string>('');
+
+  useEffect(() => {
+    console.log(level);
+  }, [level]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     formData.append(SCHEMA_KEY.photo, photo);
     const data = [...formData];
+
+    const schema =
+      level === BARTENDING_LEVEL_LIST[0].value
+        ? SCHEMA_REQUIRED
+        : SCHEMA_REQUIRED.filter((req) => req.name !== SCHEMA_KEY.facebookURL);
+
     const emptyRequired = data.filter(([key, value]) => {
-      return SCHEMA_REQUIRED.some((req) => req.name === key) && value === '';
+      return schema.some((req) => req.name === key) && value === '';
     });
 
     if (emptyRequired.length > 0) {
       // some data is empty.
       const groups = emptyRequired.map(
-        ([key]) => SCHEMA_REQUIRED.filter((req) => req.name === key).map((req) => req.required)[0],
+        ([key]) => schema.filter((req) => req.name === key).map((req) => req.required)[0],
       );
       const currentGroup = [...new Set(groups)].reduce((prev, next) => {
         return { ...prev, [next]: true };
       }, {}) as Partial<THomeGroups>;
+
       setState((S) => ({ ...S, groups: { ...S.groups, ...currentGroup } }));
       const groupName = emptyRequired.map(
-        ([key]) => SCHEMA_REQUIRED.filter((req) => req.name === key).map((req) => req.group)[0],
+        ([key]) => schema.filter((req) => req.name === key).map((req) => req.group)[0],
       );
+
       const currentGroupName = [...new Set(groupName)].join(', ');
       const message = ModalType[2];
       message.body = `下列欄位未填寫 - ${currentGroupName}`;
@@ -66,15 +85,18 @@ const Home = memo(() => {
         data.filter(([key]) => key === SCHEMA_KEY.facebookURL)[0][1] as string,
       );
 
-      const validate = {
+      const validate: TValidate = {
         tel: { name: SCHEMA_KEY.tel, value: tel, group: SchemaRequiredGroupType.Tel },
         email: { name: SCHEMA_KEY.email, value: email, group: SchemaRequiredGroupType.Email },
-        facebookURL: {
+      };
+
+      if (level === BARTENDING_LEVEL_LIST[0].value) {
+        validate.facebookURL = {
           name: SCHEMA_KEY.facebookURL,
           value: facebookURL,
           group: SchemaRequiredGroupType.FacebookURL,
-        },
-      };
+        };
+      }
 
       const validateError = Object.entries(validate).filter(([, value]) => value.value !== true);
       if (validateError.length > 0) {
@@ -194,10 +216,14 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='調酒關卡' error={state.groups.bartendingLevel}>
+                {/*** // TODO => */}
                 <Select
                   name={SCHEMA_KEY.bartendingLevel}
                   list={BARTENDING_LEVEL_LIST}
                   placeHolder='請選擇繳交調酒關卡'
+                  onChange={(e) => {
+                    setLevel(e);
+                  }}
                 />
               </Group>
             </Section>
@@ -207,8 +233,10 @@ const Home = memo(() => {
                 <Input name={SCHEMA_KEY.bartendingEnglishName} placeholder='請輸入英文調酒名稱' />
               </Group>
             </Section>
+            {/*** // TODO => */}
             <Section>
               <Group
+                required={level === BARTENDING_LEVEL_LIST[0].value}
                 title='Facebook 社群競賽貼文連結'
                 sub={[
                   '僅Don Julio關卡需填寫，JWBL關卡請填寫無',

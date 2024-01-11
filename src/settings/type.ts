@@ -93,7 +93,7 @@ export type TSchema = {
   bartendingLevel: string;
   bartendingName: string;
   bartendingEnglishName: string;
-  facebookURL: string;
+  facebookURL?: string;
   alcoholConcentration: string | number;
   baseWineName: string;
   baseWineEnglishName: string;
@@ -164,4 +164,22 @@ export enum SchemaRequiredGroupType {
 export type TResponse = {
   status_code: 0 | 1;
   message: string;
+};
+
+export type TValidate = {
+  tel: {
+    name: string;
+    value: boolean;
+    group: SchemaRequiredGroupType;
+  };
+  email: {
+    name: string;
+    value: boolean;
+    group: SchemaRequiredGroupType;
+  };
+  facebookURL?: {
+    name: string;
+    value: boolean;
+    group: SchemaRequiredGroupType;
+  };
 };

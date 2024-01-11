@@ -9,7 +9,6 @@ const useSubmit = () => {
   const [state, setState] = useState<TResponse | undefined>();
 
   const fetch = async ({ data }: { data: TSchema }) => {
-    console.log(data);
     setContext({ type: ActionType.LoadingProcess, state: { enabled: true } });
     const respond = (await Fetcher.post(REST_PATH.save, data)) as TResponse;
     setState(respond);
