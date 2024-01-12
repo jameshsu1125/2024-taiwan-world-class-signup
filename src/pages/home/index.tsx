@@ -25,9 +25,10 @@ import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
 import { FormEvent, memo, useContext, useEffect, useState } from 'react';
 import { HomeContext, HomeState, THomeGroups, THomeState } from './config';
 import './index.less';
+import LoadingProcess from '@/components/loadingProcess';
 
 const Home = memo(() => {
-  const [, setContext] = useContext(Context);
+  const [context, setContext] = useContext(Context);
   const [state, setState] = useState<THomeState>(HomeState);
   const [respond, setSubmit] = useSubmit();
   const [photo, setPhoto] = useState<string>('');
@@ -421,6 +422,7 @@ const Home = memo(() => {
           </form>
         </Container>
       </HomeContext.Provider>
+      {context.loadingProcess?.enabled && <LoadingProcess />}
     </div>
   );
 });

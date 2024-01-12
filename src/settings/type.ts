@@ -30,7 +30,7 @@ export enum TransitionType {
 export type TLoadingProcessState = {
   enabled?: boolean;
   type?: LoadingProcessType;
-  body?: '';
+  body?: string;
 };
 
 export const ModalType: { title: string; confirm: string; cancel: string; body: string }[] = [

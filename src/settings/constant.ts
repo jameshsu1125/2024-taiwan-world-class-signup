@@ -13,8 +13,8 @@ import {
 
 export const LoadingProcessState: TLoadingProcessState = {
   enabled: false,
-  type: LoadingProcessType.Spokes,
-  body: '',
+  type: LoadingProcessType.Bubbles,
+  body: '資料處理中，請稍後...',
 };
 
 export const ModalState: TModalState = {
