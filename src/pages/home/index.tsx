@@ -374,6 +374,7 @@ const Home = memo(() => {
                 <Textarea
                   name={SCHEMA_KEY.productionMethod}
                   placeholder='請輸入中文內容，限300字內'
+                  maxLength={400}
                 />
                 <Textarea
                   name={SCHEMA_KEY.productionMethodEnglish}
@@ -383,7 +384,11 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='作品簡介' error={state.groups.introduction}>
-                <Textarea name={SCHEMA_KEY.introduction} placeholder='請輸入中文內容，限300字內' />
+                <Textarea
+                  maxLength={400}
+                  name={SCHEMA_KEY.introduction}
+                  placeholder='請輸入中文內容，限300字內'
+                />
                 <Textarea
                   name={SCHEMA_KEY.introductionEnglish}
                   placeholder='請輸入英文內容，限300字內'
