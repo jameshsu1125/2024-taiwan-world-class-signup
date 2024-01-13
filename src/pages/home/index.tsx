@@ -34,10 +34,6 @@ const Home = memo(() => {
   const [photo, setPhoto] = useState<string>('');
   const [level, setLevel] = useState<string>('');
 
-  useEffect(() => {
-    console.log(level);
-  }, [level]);
-
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
