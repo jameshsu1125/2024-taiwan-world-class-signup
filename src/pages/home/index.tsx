@@ -213,7 +213,6 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='調酒關卡' error={state.groups.bartendingLevel}>
-                {/*** // TODO => */}
                 <Select
                   name={SCHEMA_KEY.bartendingLevel}
                   list={BARTENDING_LEVEL_LIST}
@@ -230,7 +229,6 @@ const Home = memo(() => {
                 <Input name={SCHEMA_KEY.bartendingEnglishName} placeholder='請輸入英文調酒名稱' />
               </Group>
             </Section>
-            {/*** // TODO => */}
             <Section>
               <Group
                 required={level === BARTENDING_LEVEL_LIST[0].value}
@@ -277,79 +275,72 @@ const Home = memo(() => {
                   name={SCHEMA_KEY.baseWineDosage}
                   placeholder='請輸入使用量(ml)'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料1 / 使用量(ml)' required={false}>
+              <Group title='材料1 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName1} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName1} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage1}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料2 / 使用量(ml)' required={false}>
+              <Group title='材料2 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName2} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName2} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage2}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料3 / 使用量(ml)' required={false}>
+              <Group title='材料3 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName3} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName3} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage3}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料4 / 使用量(ml)' required={false}>
+              <Group title='材料4 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName4} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName4} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage4}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料5 / 使用量(ml)' required={false}>
+              <Group title='材料5 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName5} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName5} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage5}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
             <Section>
-              <Group title='材料6 / 使用量(ml)' required={false}>
+              <Group title='材料6 / 使用量' required={false}>
                 <Input name={SCHEMA_KEY.materialName6} placeholder='請輸入材料中文名稱' />
                 <Input name={SCHEMA_KEY.materialEnglishName6} placeholder='請輸入材料英文名稱' />
                 <Input
                   name={SCHEMA_KEY.materialDosage6}
-                  placeholder='請輸入使用量(ml)'
+                  placeholder='請輸入使用量和單位'
                   full={false}
-                  type='number'
                 />
               </Group>
             </Section>
