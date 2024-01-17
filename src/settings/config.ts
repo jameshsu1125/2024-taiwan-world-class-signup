@@ -173,11 +173,11 @@ export const DIAGEO_STAFF_LIST = [
 export const BARTENDING_LEVEL_LIST = [
   { label: 'Don Julio: Classic of Future', value: 'Don Julio: Classic of Future' },
   {
-    label: 'Johnnie Walker Black: One Step Beyon（款一）',
-    value: 'Johnnie Walker Black: One Step Beyon（款一）',
+    label: 'Johnnie Walker Black: One Step Beyond（款一）',
+    value: 'Johnnie Walker Black: One Step Beyond（款一）',
   },
   {
-    label: 'Johnnie Walker Black: One Step Beyon（款二）',
-    value: 'Johnnie Walker Black: One Step Beyon（款二）',
+    label: 'Johnnie Walker Black: One Step Beyond（款二）',
+    value: 'Johnnie Walker Black: One Step Beyond（款二）',
   },
 ];
