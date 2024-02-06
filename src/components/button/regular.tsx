@@ -1,8 +1,20 @@
 import { IReactProps } from '@/settings/type';
 import { memo } from 'react';
 import './regular.less';
+import { twMerge } from 'tailwind-merge';
 
-const Regular = memo(({ children }: IReactProps) => (
-  <div className='button-regular'>{children}</div>
+type T = IReactProps & {
+  disabled?: boolean;
+};
+
+const Regular = memo(({ children, disabled }: T) => (
+  <div
+    className={twMerge(
+      'button-regular',
+      disabled ? 'button-regular-disable' : 'button-regular-hover',
+    )}
+  >
+    {children}
+  </div>
 ));
 export default Regular;

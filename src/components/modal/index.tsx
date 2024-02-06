@@ -19,29 +19,31 @@ const Modal = memo(() => {
       <div className='dialog'>
         <h1>{data.title}</h1>
         <p>{data.body}</p>
-        <div className='w-full pt-3 flex flex-row justify-center items-end space-x-4'>
-          {data.confirm && (
-            <div className='w-1/2'>
-              <Button
-                onClick={() => {
-                  data.onClose?.();
-                  setContext({ type: ActionType.Modal, state: { enabled: false } });
-                }}
-              >
-                <Button.Modal>{data.confirm}</Button.Modal>
-              </Button>
-            </div>
-          )}
-          {data.cancel && (
-            <div className='w-1/2'>
-              <Button
-                onClick={() => setContext({ type: ActionType.Modal, state: { enabled: false } })}
-              >
-                <Button.Modal revert>{data.cancel}</Button.Modal>
-              </Button>
-            </div>
-          )}
-        </div>
+        {data.confirm === '' && data.cancel === '' ? null : (
+          <div className='w-full pt-3 flex flex-row justify-center items-end space-x-4'>
+            {data.confirm && (
+              <div className='w-1/2'>
+                <Button
+                  onClick={() => {
+                    data.onClose?.();
+                    setContext({ type: ActionType.Modal, state: { enabled: false } });
+                  }}
+                >
+                  <Button.Modal>{data.confirm}</Button.Modal>
+                </Button>
+              </div>
+            )}
+            {data.cancel && (
+              <div className='w-1/2'>
+                <Button
+                  onClick={() => setContext({ type: ActionType.Modal, state: { enabled: false } })}
+                >
+                  <Button.Modal revert>{data.cancel}</Button.Modal>
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

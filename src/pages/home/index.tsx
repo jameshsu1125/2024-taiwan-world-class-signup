@@ -11,6 +11,7 @@ import {
   DIAGEO_STAFF_LIST,
   SCHEMA_KEY,
   SCHEMA_REQUIRED,
+  SUBMIT_END_TIME,
 } from '@/settings/config';
 import { Context } from '@/settings/constant';
 import {
@@ -22,7 +23,7 @@ import {
 } from '@/settings/type';
 import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
-import { FormEvent, memo, useContext, useEffect, useState } from 'react';
+import { FormEvent, memo, useContext, useEffect, useMemo, useState } from 'react';
 import { HomeContext, HomeState, THomeGroups, THomeState } from './config';
 import './index.less';
 import LoadingProcess from '@/components/loadingProcess';
@@ -33,6 +34,21 @@ const Home = memo(() => {
   const [respond, setSubmit] = useSubmit();
   const [photo, setPhoto] = useState<string>('');
   const [level, setLevel] = useState<string>('');
+
+  const disabled = useMemo(() => new Date().getTime() > new Date(SUBMIT_END_TIME).getTime(), []);
+
+  useEffect(() => {
+    if (disabled) {
+      setContext({
+        type: ActionType.Modal,
+        state: {
+          ...ModalType[4],
+          enabled: true,
+          onClose: () => {},
+        },
+      });
+    }
+  }, [disabled]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -173,14 +189,26 @@ const Home = memo(() => {
           <form onSubmit={onSubmit}>
             <Section>
               <Group title='代表店家' error={state.groups.store}>
-                <Input name={SCHEMA_KEY.storeName} placeholder='請輸入店名' />
+                <Input name={SCHEMA_KEY.storeName} placeholder='請輸入店名' disabled={disabled} />
               </Group>
             </Section>
             <Section>
               <Group title='姓名' error={state.groups.user}>
-                <Input name={SCHEMA_KEY.userName} placeholder='請輸入中文姓名' />
-                <Input name={SCHEMA_KEY.userEnglishName} placeholder='請輸入英文姓名' />
-                <Input name={SCHEMA_KEY.userNickName} placeholder='請輸入暱稱' />
+                <Input
+                  name={SCHEMA_KEY.userName}
+                  placeholder='請輸入中文姓名'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.userEnglishName}
+                  placeholder='請輸入英文姓名'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.userNickName}
+                  placeholder='請輸入暱稱'
+                  disabled={disabled}
+                />
               </Group>
             </Section>
             <Section>
@@ -190,6 +218,7 @@ const Home = memo(() => {
                   type='tel'
                   placeholder='請輸入手機號碼'
                   maxLength={10}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
@@ -199,7 +228,12 @@ const Home = memo(() => {
                 sub={['若繳交成功，10分鐘內將收到填寫副本，請填寫正確郵件地址']}
                 error={state.groups.email}
               >
-                <Input name={SCHEMA_KEY.email} type='email' placeholder='請輸入電子信箱' />
+                <Input
+                  name={SCHEMA_KEY.email}
+                  type='email'
+                  placeholder='請輸入電子信箱'
+                  disabled={disabled}
+                />
               </Group>
             </Section>
             <Section>
@@ -208,6 +242,7 @@ const Home = memo(() => {
                   name={SCHEMA_KEY.diageoStaff}
                   list={DIAGEO_STAFF_LIST}
                   placeHolder='請選擇Diageo負責業務'
+                  disabled={disabled}
                 />
               </Group>
             </Section>
@@ -217,6 +252,7 @@ const Home = memo(() => {
                   name={SCHEMA_KEY.bartendingLevel}
                   list={BARTENDING_LEVEL_LIST}
                   placeHolder='請選擇繳交調酒關卡'
+                  disabled={disabled}
                   onChange={(e) => {
                     setLevel(e);
                   }}
@@ -225,8 +261,16 @@ const Home = memo(() => {
             </Section>
             <Section>
               <Group title='參賽調酒名稱' error={state.groups.bartending}>
-                <Input name={SCHEMA_KEY.bartendingName} placeholder='請輸入中文調酒名稱' />
-                <Input name={SCHEMA_KEY.bartendingEnglishName} placeholder='請輸入英文調酒名稱' />
+                <Input
+                  name={SCHEMA_KEY.bartendingName}
+                  disabled={disabled}
+                  placeholder='請輸入中文調酒名稱'
+                />
+                <Input
+                  name={SCHEMA_KEY.bartendingEnglishName}
+                  disabled={disabled}
+                  placeholder='請輸入英文調酒名稱'
+                />
               </Group>
             </Section>
             <Section>
@@ -239,7 +283,7 @@ const Home = memo(() => {
                 ]}
                 error={state.groups.facebookURL}
               >
-                <Input name={SCHEMA_KEY.facebookURL} placeholder='請輸入網址' />
+                <Input name={SCHEMA_KEY.facebookURL} disabled={disabled} placeholder='請輸入網址' />
               </Group>
             </Section>
             <Section>
@@ -260,6 +304,7 @@ const Home = memo(() => {
                   type='number'
                   name={SCHEMA_KEY.alcoholConcentration}
                   placeholder='請輸入文字'
+                  disabled={disabled}
                 />
               </Group>
             </Section>
@@ -269,85 +314,156 @@ const Home = memo(() => {
                 sub={['提醒：調酒單杯最少需含指定基酒30ml']}
                 error={state.groups.baseWine}
               >
-                <Input name={SCHEMA_KEY.baseWineName} placeholder='請輸入基酒中文名稱' />
-                <Input name={SCHEMA_KEY.baseWineEnglishName} placeholder='請輸入基酒英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.baseWineName}
+                  placeholder='請輸入基酒中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.baseWineEnglishName}
+                  placeholder='請輸入基酒英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.baseWineDosage}
                   placeholder='請輸入使用量(ml)'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料1 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName1} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName1} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName1}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName1}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage1}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料2 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName2} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName2} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName2}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName2}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage2}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料3 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName3} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName3} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName3}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName3}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage3}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料4 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName4} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName4} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName4}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName4}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage4}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料5 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName5} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName5} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName5}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName5}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage5}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='材料6 / 使用量' required={false}>
-                <Input name={SCHEMA_KEY.materialName6} placeholder='請輸入材料中文名稱' />
-                <Input name={SCHEMA_KEY.materialEnglishName6} placeholder='請輸入材料英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.materialName6}
+                  placeholder='請輸入材料中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.materialEnglishName6}
+                  placeholder='請輸入材料英文名稱'
+                  disabled={disabled}
+                />
                 <Input
                   name={SCHEMA_KEY.materialDosage6}
                   placeholder='請輸入使用量和單位'
                   full={false}
+                  disabled={disabled}
                 />
               </Group>
             </Section>
             <Section>
               <Group title='Garnish' required={false}>
-                <Input name={SCHEMA_KEY.garnishName} placeholder='請輸入中文名稱' />
-                <Input name={SCHEMA_KEY.garnishEnglishName} placeholder='請輸入英文名稱' />
+                <Input
+                  name={SCHEMA_KEY.garnishName}
+                  placeholder='請輸入中文名稱'
+                  disabled={disabled}
+                />
+                <Input
+                  name={SCHEMA_KEY.garnishEnglishName}
+                  placeholder='請輸入英文名稱'
+                  disabled={disabled}
+                />
               </Group>
             </Section>
             <Section>
@@ -362,10 +478,12 @@ const Home = memo(() => {
                   name={SCHEMA_KEY.productionMethod}
                   placeholder='請輸入中文內容，限300字內'
                   maxLength={400}
+                  disabled={disabled}
                 />
                 <Textarea
                   name={SCHEMA_KEY.productionMethodEnglish}
                   placeholder='請輸入英文內容，限300字內'
+                  disabled={disabled}
                 />
               </Group>
             </Section>
@@ -375,10 +493,12 @@ const Home = memo(() => {
                   maxLength={400}
                   name={SCHEMA_KEY.introduction}
                   placeholder='請輸入中文內容，限300字內'
+                  disabled={disabled}
                 />
                 <Textarea
                   name={SCHEMA_KEY.introductionEnglish}
                   placeholder='請輸入英文內容，限300字內'
+                  disabled={disabled}
                 />
               </Group>
             </Section>
@@ -396,7 +516,8 @@ const Home = memo(() => {
                     >
                       <button
                         type='button'
-                        className='px-5 py-1 mr-3 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-200'
+                        className='px-5 py-1 mr-3 rounded-2xl bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-200 disabled:bg-secondary disabled:text-gray-200'
+                        disabled={disabled}
                       >
                         選擇檔案
                       </button>
@@ -407,7 +528,7 @@ const Home = memo(() => {
               </Group>
             </Section>
             <Section>
-              <Button type='submit'>
+              <Button type='submit' disabled={disabled}>
                 <Button.Regular>確認送出</Button.Regular>
               </Button>
             </Section>

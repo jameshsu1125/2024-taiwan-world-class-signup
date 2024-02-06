@@ -181,3 +181,5 @@ export const BARTENDING_LEVEL_LIST = [
     value: 'Johnnie Walker Black: One Step Beyond（款二）',
   },
 ];
+
+export const SUBMIT_END_TIME = '2024-02-18 23:59:59';

@@ -58,6 +58,12 @@ export const ModalType: { title: string; confirm: string; cancel: string; body: 
     cancel: '',
     body: '',
   },
+  {
+    title: '報名截止',
+    confirm: '',
+    cancel: '',
+    body: '酒譜繳交已於2/18截止',
+  },
 ];
 
 export type TModalState = {

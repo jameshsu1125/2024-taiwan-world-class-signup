@@ -7,9 +7,10 @@ type T = {
   list: any[];
   placeHolder?: string;
   onChange?: (e: string) => void;
+  disabled?: boolean;
 };
 
-const Select = memo(({ name, list = [], placeHolder = '請選擇', onChange = () => {} }: T) => {
+const Select = memo(({ name, disabled, onChange, list, placeHolder = '請選擇' }: T) => {
   const [def, setDef] = useState<boolean>(false);
 
   return (
@@ -19,8 +20,9 @@ const Select = memo(({ name, list = [], placeHolder = '請選擇', onChange = ()
       onChange={(e) => {
         if (e.target.value) setDef(true);
         else setDef(false);
-        onChange(e.target.value);
+        onChange?.(e.target.value);
       }}
+      disabled={disabled}
     >
       <option value=''>{placeHolder}</option>
       {list.map((item, index) => (
