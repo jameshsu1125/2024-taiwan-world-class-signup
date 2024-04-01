@@ -64,11 +64,11 @@ export const SCHEMA_REQUIRED = [
     required: SchemaRequiredType.User,
     group: SchemaRequiredGroupType.User,
   },
-  {
-    name: SCHEMA_KEY.userEnglishName,
-    required: SchemaRequiredType.User,
-    group: SchemaRequiredGroupType.User,
-  },
+  // {
+  //   name: SCHEMA_KEY.userEnglishName,
+  //   required: SchemaRequiredType.User,
+  //   group: SchemaRequiredGroupType.User,
+  // },
   {
     name: SCHEMA_KEY.userNickName,
     required: SchemaRequiredType.User,
@@ -95,11 +95,11 @@ export const SCHEMA_REQUIRED = [
     required: SchemaRequiredType.Bartending,
     group: SchemaRequiredGroupType.Bartending,
   },
-  {
-    name: SCHEMA_KEY.bartendingEnglishName,
-    required: SchemaRequiredType.Bartending,
-    group: SchemaRequiredGroupType.Bartending,
-  },
+  // {
+  //   name: SCHEMA_KEY.bartendingEnglishName,
+  //   required: SchemaRequiredType.Bartending,
+  //   group: SchemaRequiredGroupType.Bartending,
+  // },
   {
     name: SCHEMA_KEY.facebookURL,
     required: SchemaRequiredType.FacebookURL,
@@ -115,11 +115,11 @@ export const SCHEMA_REQUIRED = [
     required: SchemaRequiredType.BaseWine,
     group: SchemaRequiredGroupType.BaseWine,
   },
-  {
-    name: SCHEMA_KEY.baseWineEnglishName,
-    required: SchemaRequiredType.BaseWine,
-    group: SchemaRequiredGroupType.BaseWine,
-  },
+  // {
+  //   name: SCHEMA_KEY.baseWineEnglishName,
+  //   required: SchemaRequiredType.BaseWine,
+  //   group: SchemaRequiredGroupType.BaseWine,
+  // },
   {
     name: SCHEMA_KEY.baseWineDosage,
     required: SchemaRequiredType.BaseWine,
@@ -130,31 +130,31 @@ export const SCHEMA_REQUIRED = [
     required: SchemaRequiredType.Cups,
     group: SchemaRequiredGroupType.Cups,
   },
-  {
-    name: SCHEMA_KEY.cupsEnglishName,
-    required: SchemaRequiredType.Cups,
-    group: SchemaRequiredGroupType.Cups,
-  },
+  // {
+  //   name: SCHEMA_KEY.cupsEnglishName,
+  //   required: SchemaRequiredType.Cups,
+  //   group: SchemaRequiredGroupType.Cups,
+  // },
   {
     name: SCHEMA_KEY.productionMethod,
     required: SchemaRequiredType.Production,
     group: SchemaRequiredGroupType.Production,
   },
-  {
-    name: SCHEMA_KEY.productionMethodEnglish,
-    required: SchemaRequiredType.Production,
-    group: SchemaRequiredGroupType.Production,
-  },
+  // {
+  //   name: SCHEMA_KEY.productionMethodEnglish,
+  //   required: SchemaRequiredType.Production,
+  //   group: SchemaRequiredGroupType.Production,
+  // },
   {
     name: SCHEMA_KEY.introduction,
     required: SchemaRequiredType.Introduction,
     group: SchemaRequiredGroupType.Introduction,
   },
-  {
-    name: SCHEMA_KEY.introductionEnglish,
-    required: SchemaRequiredType.Introduction,
-    group: SchemaRequiredGroupType.Introduction,
-  },
+  // {
+  //   name: SCHEMA_KEY.introductionEnglish,
+  //   required: SchemaRequiredType.Introduction,
+  //   group: SchemaRequiredGroupType.Introduction,
+  // },
   {
     name: SCHEMA_KEY.photo,
     required: SchemaRequiredType.Photo,
@@ -171,15 +171,21 @@ export const DIAGEO_STAFF_LIST = [
 ];
 
 export const BARTENDING_LEVEL_LIST = [
-  { label: 'Don Julio: Classic of Future', value: 'Don Julio: Classic of Future' },
-  {
-    label: 'Johnnie Walker Black: One Step Beyond（款一）',
-    value: 'Johnnie Walker Black: One Step Beyond（款一）',
-  },
-  {
-    label: 'Johnnie Walker Black: One Step Beyond（款二）',
-    value: 'Johnnie Walker Black: One Step Beyond（款二）',
-  },
+  // { label: 'Don Julio: Classic of Future', value: 'Don Julio: Classic of Future' },
+  // {
+  //   label: 'Johnnie Walker Black: One Step Beyond（款一）',
+  //   value: 'Johnnie Walker Black: One Step Beyond（款一）',
+  // },
+  // {
+  //   label: 'Johnnie Walker Black: One Step Beyond（款二）',
+  //   value: 'Johnnie Walker Black: One Step Beyond（款二）',
+  // },
+  { label: 'Don Julio: Fewer, Bigger.', value: 'Don Julio: Fewer, Bigger.' },
+  // { label: 'Tanqueray No.10: MAKE IT A TEN (款一)', value: 'Tanqueray No.10: MAKE IT A TEN (款一)' },
+  // { label: 'Tanqueray No.10: MAKE IT A TEN (款二)', value: 'Tanqueray No.10: MAKE IT A TEN (款二)' },
+  // { label: 'The Singleton: THE SINGLETON DISCO', value: 'The Singleton: THE SINGLETON DISCO' },
 ];
 
-export const SUBMIT_END_TIME = '2024-02-18 23:59:59';
+export const SUBMIT_END_TIME = '3024-02-18 23:59:59';
+export const SUBMIT_END_DATE = '2024年4月15日 23:59';
+export const SUBMIT_PS = ['表示必填欄位', '英文欄位不需填寫'];

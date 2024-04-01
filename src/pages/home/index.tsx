@@ -2,6 +2,7 @@ import Button from '@/components/button';
 import Container from '@/components/container';
 import Group from '@/components/group';
 import Input from '@/components/input';
+import LoadingProcess from '@/components/loadingProcess';
 import Section from '@/components/section';
 import Select from '@/components/select';
 import Textarea from '@/components/textArea';
@@ -11,7 +12,9 @@ import {
   DIAGEO_STAFF_LIST,
   SCHEMA_KEY,
   SCHEMA_REQUIRED,
+  SUBMIT_END_DATE,
   SUBMIT_END_TIME,
+  SUBMIT_PS,
 } from '@/settings/config';
 import { Context } from '@/settings/constant';
 import {
@@ -22,11 +25,10 @@ import {
   TValidate,
 } from '@/settings/type';
 import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
-import { ValidateEmail, ValidatePhone, ValidateURL } from 'lesca-validate';
+import { ValidateEmail, ValidatePhone } from 'lesca-validate';
 import { FormEvent, memo, useContext, useEffect, useMemo, useState } from 'react';
 import { HomeContext, HomeState, THomeGroups, THomeState } from './config';
 import './index.less';
-import LoadingProcess from '@/components/loadingProcess';
 
 const Home = memo(() => {
   const [context, setContext] = useContext(Context);
@@ -94,22 +96,11 @@ const Home = memo(() => {
       // all data is not empty.
       const tel = ValidatePhone(data.filter(([key]) => key === SCHEMA_KEY.tel)[0][1] as string);
       const email = ValidateEmail(data.filter(([key]) => key === SCHEMA_KEY.email)[0][1] as string);
-      const facebookURL = ValidateURL(
-        data.filter(([key]) => key === SCHEMA_KEY.facebookURL)[0][1] as string,
-      );
 
       const validate: TValidate = {
         tel: { name: SCHEMA_KEY.tel, value: tel, group: SchemaRequiredGroupType.Tel },
         email: { name: SCHEMA_KEY.email, value: email, group: SchemaRequiredGroupType.Email },
       };
-
-      if (level === BARTENDING_LEVEL_LIST[0].value) {
-        validate.facebookURL = {
-          name: SCHEMA_KEY.facebookURL,
-          value: facebookURL,
-          group: SchemaRequiredGroupType.FacebookURL,
-        };
-      }
 
       const validateError = Object.entries(validate).filter(([, value]) => value.value !== true);
       if (validateError.length > 0) {
@@ -178,12 +169,18 @@ const Home = memo(() => {
             <div className='space-y-5'>
               <h1>2024 Taiwan World Class 複賽</h1>
               <ol>
-                <li>酒譜繳交截止日：2024年2月18日 23:59</li>
+                <li>酒譜繳交截止日：{SUBMIT_END_DATE}</li>
                 <li> 請以中英文填寫酒譜內容，若材料無中文名稱則可填入英文名稱</li>
                 <li>酒譜寄出後，頁面彈出『繳交成功』視窗者，即完成酒譜繳交作業</li>
                 <li>逾時繳交者，將不再保有參賽資格，亦不另做通知</li>
               </ol>
-              <span className='text-red-500'>*表示必填欄位</span>
+              <div className='flex flex-col'>
+                {SUBMIT_PS.map((ps) => (
+                  <span key={ps} className='text-red-500'>
+                    *{ps}
+                  </span>
+                ))}
+              </div>
             </div>
           </Section>
           <form onSubmit={onSubmit}>
@@ -271,19 +268,6 @@ const Home = memo(() => {
                   disabled={disabled}
                   placeholder='請輸入英文調酒名稱'
                 />
-              </Group>
-            </Section>
-            <Section>
-              <Group
-                required={level === BARTENDING_LEVEL_LIST[0].value}
-                title='Facebook 社群競賽貼文連結'
-                sub={[
-                  '僅Don Julio關卡需填寫，JWBL關卡請填寫無',
-                  '貼文需設定公開（分享對象為「所有人」），以主辦單位可核查為準未依指定格式發文者，視為棄權',
-                ]}
-                error={state.groups.facebookURL}
-              >
-                <Input name={SCHEMA_KEY.facebookURL} disabled={disabled} placeholder='請輸入網址' />
               </Group>
             </Section>
             <Section>
