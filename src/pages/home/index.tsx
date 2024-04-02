@@ -167,7 +167,7 @@ const Home = memo(() => {
           <header />
           <Section className='pt-5'>
             <div className='space-y-5'>
-              <h1>2024 Taiwan World Class 複賽</h1>
+              <h1>2024 Taiwan World Class 決賽</h1>
               <ol>
                 <li>酒譜繳交截止日：{SUBMIT_END_DATE}</li>
                 <li> 請以中英文填寫酒譜內容，若材料無中文名稱則可填入英文名稱</li>
