@@ -14,6 +14,8 @@ import {
   SCHEMA_REQUIRED,
   SUBMIT_END_DATE,
   SUBMIT_END_TIME,
+  SUBMIT_LAST_DATE,
+  SUBMIT_LAST_TIME,
   SUBMIT_PS,
 } from '@/settings/config';
 import { Context } from '@/settings/constant';
@@ -36,8 +38,8 @@ const Home = memo(() => {
   const [respond, setSubmit] = useSubmit();
   const [photo, setPhoto] = useState<string>('');
   const [level, setLevel] = useState<string>('');
-
   const disabled = useMemo(() => new Date().getTime() > new Date(SUBMIT_END_TIME).getTime(), []);
+  const isLastTime = new Date().getTime() > new Date(SUBMIT_LAST_TIME).getTime();
 
   useEffect(() => {
     if (disabled) {
@@ -160,6 +162,11 @@ const Home = memo(() => {
     }
   }, [respond]);
 
+  const endDate = useMemo(() => {
+    if (isLastTime) return SUBMIT_LAST_DATE;
+    return SUBMIT_END_DATE;
+  }, []);
+
   return (
     <div className='Home'>
       <HomeContext.Provider value={[state, setState]}>
@@ -169,18 +176,20 @@ const Home = memo(() => {
             <div className='space-y-5'>
               <h1>2024 Taiwan World Class 決賽</h1>
               <ol>
-                <li>酒譜繳交截止日：{SUBMIT_END_DATE}</li>
+                <li>酒譜繳交截止日：{endDate}</li>
                 <li> 請以中英文填寫酒譜內容，若材料無中文名稱則可填入英文名稱</li>
                 <li>酒譜寄出後，頁面彈出『繳交成功』視窗者，即完成酒譜繳交作業</li>
                 <li>逾時繳交者，將不再保有參賽資格，亦不另做通知</li>
               </ol>
-              <div className='flex flex-col'>
-                {SUBMIT_PS.map((ps) => (
-                  <span key={ps} className='text-red-500'>
-                    *{ps}
-                  </span>
-                ))}
-              </div>
+              {!isLastTime && (
+                <div className='flex flex-col'>
+                  {SUBMIT_PS.map((ps) => (
+                    <span key={ps} className='text-red-500'>
+                      *{ps}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </Section>
           <form onSubmit={onSubmit}>
