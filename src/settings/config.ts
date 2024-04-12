@@ -53,8 +53,8 @@ export const SCHEMA_KEY = {
   photo: 'photo',
 };
 
-// export const SUBMIT_LAST_TIME = '2024-04-15 23:59:59';
-export const SUBMIT_LAST_TIME = '2024-03-15 23:59:59';
+export const SUBMIT_LAST_TIME = '2024-04-15 23:59:59';
+// export const SUBMIT_LAST_TIME = '2024-03-15 23:59:59';
 export const SUBMIT_LAST_DATE = '2024年5月19日 23:59';
 
 const isLastTime = new Date().getTime() > new Date(SUBMIT_LAST_TIME).getTime();
@@ -279,4 +279,4 @@ export const BARTENDING_LEVEL_LIST = isLastTime
 
 export const SUBMIT_END_TIME = '3024-04-15 23:59:59';
 export const SUBMIT_END_DATE = '2024年4月15日 23:59';
-export const SUBMIT_PS = ['表示必填欄位', '英文欄位不需填寫'];
+export const SUBMIT_PS = isLastTime ? ['表示必填欄位'] : ['表示必填欄位', '英文欄位不需填寫'];

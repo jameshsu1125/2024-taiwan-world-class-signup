@@ -181,15 +181,13 @@ const Home = memo(() => {
                 <li>酒譜寄出後，頁面彈出『繳交成功』視窗者，即完成酒譜繳交作業</li>
                 <li>逾時繳交者，將不再保有參賽資格，亦不另做通知</li>
               </ol>
-              {!isLastTime && (
-                <div className='flex flex-col'>
-                  {SUBMIT_PS.map((ps) => (
-                    <span key={ps} className='text-red-500'>
-                      *{ps}
-                    </span>
-                  ))}
-                </div>
-              )}
+              <div className='flex flex-col'>
+                {SUBMIT_PS.map((ps) => (
+                  <span key={ps} className='text-red-500'>
+                    *{ps}
+                  </span>
+                ))}
+              </div>
             </div>
           </Section>
           <form onSubmit={onSubmit}>
