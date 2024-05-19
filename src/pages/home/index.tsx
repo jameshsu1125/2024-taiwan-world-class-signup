@@ -15,7 +15,6 @@ import {
   SUBMIT_END_DATE,
   SUBMIT_END_TIME,
   SUBMIT_LAST_DATE,
-  SUBMIT_LAST_TIME,
   SUBMIT_PS,
 } from '@/settings/config';
 import { Context } from '@/settings/constant';
@@ -39,7 +38,7 @@ const Home = memo(() => {
   const [photo, setPhoto] = useState<string>('');
   const [level, setLevel] = useState<string>('');
   const disabled = useMemo(() => new Date().getTime() > new Date(SUBMIT_END_TIME).getTime(), []);
-  const isLastTime = new Date().getTime() > new Date(SUBMIT_LAST_TIME).getTime();
+  const isLastTime = true;
 
   useEffect(() => {
     if (disabled) {

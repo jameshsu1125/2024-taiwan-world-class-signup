@@ -57,7 +57,7 @@ export const SUBMIT_LAST_TIME = '2024-04-15 23:59:59';
 // export const SUBMIT_LAST_TIME = '2024-03-15 23:59:59';
 export const SUBMIT_LAST_DATE = '2024年5月19日 23:59';
 
-const isLastTime = new Date().getTime() > new Date(SUBMIT_LAST_TIME).getTime();
+const isLastTime = true;
 
 export const SCHEMA_REQUIRED = isLastTime
   ? [
